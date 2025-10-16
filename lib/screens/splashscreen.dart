@@ -1,33 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/main.dart'; // Importa MainApp
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/main.dart';     // HomScreen
+import 'package:flutter_application_1/screens/login.dart'; // LoginScreen
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  double opacity = 1.0; // Opacidad inicial
+  double opacity = 1.0;
 
   @override
   void initState() {
     super.initState();
-    // Inicia la animación
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() {
-        opacity = 0.0; // Cambia la opacidad a 0
-      });
 
-      // Navega a HomeScreen después de la espera y la animación
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() => opacity = 0.0);
+
       Future.delayed(const Duration(milliseconds: 500), () {
-        Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
+        final user = FirebaseAuth.instance.currentUser;
+
+        if (user != null) {
+          // Usuario autenticado → a Home
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const HomeScreen()),
+          );
+        } else {
+          // No autenticado → a Login
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginScreen()),
+          );
+        }
       });
     });
   }
@@ -35,23 +43,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(
-        context,
-      ).colorScheme.primary, // Color de fondo primario
-
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Center(
         child: AnimatedOpacity(
-          duration: const Duration(
-            milliseconds: 500,
-          ), // Duración de la animación
+          duration: const Duration(milliseconds: 500),
           opacity: opacity,
           child: Text(
             'Soy el Splashscreen',
             style: TextStyle(
               fontSize: 24,
-              color: Theme.of(context)
-                  .colorScheme
-                  .onPrimary, // Usar el color de texto definido en el tema
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
         ),
