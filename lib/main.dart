@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:flutter_application_1/screens/splashscreen.dart';
-import 'package:flutter_application_1/screens/chats.dart';
+import 'package:flutter_application_1/screens/products.dart';
 import 'package:flutter_application_1/screens/login.dart';
 import 'package:flutter_application_1/theme/theme.dart';
 
@@ -15,11 +15,11 @@ Future<void> main() async {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
         apiKey: "AIzaSyDrGeP6Y2Lk2YByyacMX5GS6kLbxAtFvYg",
-        authDomain: "app1-a0273.firebaseapp.com",
-        projectId: "app1-a0273",
-        storageBucket: "app1-a0273.firebasestorage.app",
-        messagingSenderId: "122655108877",
-        appId: "1:122655108877:web:f27788f9c0b9c35a3c8a44",
+    authDomain: "app1-a0273.firebaseapp.com",
+    projectId: "app1-a0273",
+    storageBucket: "app1-a0273.firebasestorage.app",
+    messagingSenderId: "122655108877",
+    appId: "1:122655108877:web:f27788f9c0b9c35a3c8a44",
       ),
     );
   } on FirebaseException catch (e) {
@@ -53,6 +53,7 @@ class HomeScreen extends StatelessWidget {
     await FirebaseAuth.instance.signOut();
 
     Navigator.pushReplacement(
+      // ignore: use_build_context_synchronously
       context,
       MaterialPageRoute(builder: (_) => const LoginScreen()),
     );
@@ -65,12 +66,13 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Inicio'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.logout, color: Colors.white),
+
             onPressed: () => _signOut(context),
           ),
         ],
       ),
-      body: const ChatsScreen(),
+      body: const ProductsScreen(),
     );
   }
 }

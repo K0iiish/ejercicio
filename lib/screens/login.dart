@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await GoogleSignIn.instance.initialize();
 
       final googleUser = await GoogleSignIn.instance.authenticate();
-      if (googleUser == null) return null;
+      if (googleUser == false) return null;
 
       final googleAuth = await googleUser.authentication;
 
@@ -85,7 +85,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                         textStyle: const TextStyle(fontSize: 16),
                       ),
-                      icon: const Icon(Icons.login),
+                        icon: Image.asset(
+                        'assets/google.png',
+                        height: 24,
+                        width: 24,
+                      ),  
                       label: const Text("Iniciar con Google"),
                       onPressed: _login,
                     ),
