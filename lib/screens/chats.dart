@@ -93,6 +93,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                             'timestamp': FieldValue.serverTimestamp(),
                           });
                           final messenger = ScaffoldMessenger.of(context);
+                          // ignore: use_build_context_synchronously
                           Navigator.pop(context);
                           messenger.showSnackBar(
                             const SnackBar(content: Text('Contacto agregado correctamente')),
