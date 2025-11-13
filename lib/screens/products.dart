@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_application_1/screens/chats.dart';
+import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/conversaciones_vecinos.dart';
 import 'package:flutter_application_1/screens/detail_product.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -13,21 +14,27 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchText = '';
-  int _currentIndex = 2;  // Ajustado: 0 = Otros, 1 = Chats, 2 = Buscar
+  int _currentIndex = 2;  // Ajustado: 0 = Inicio, 1 = Chats, 2 = Buscar
 
 void _onTabTapped(int index) {
   if (index == 0) {
+    // Home → HomeScreen
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const PlaceholderScreen()),
+      MaterialPageRoute(builder: (_) => const HomeScreen()),
     );
   } else if (index == 1) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const ChatsScreen()),
+      MaterialPageRoute(builder: (_) => const ConversacionesVecinosScreen()),
+    );
+    } else if (index == 3) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const ProductsScreen()),
     );
   } else if (index == 2) {
-    // “Buscar” tab: queda en Productos (esta misma pantalla)
+    // "Buscar" tab: queda en Productos (esta misma pantalla)
     setState(() => _currentIndex = index);
   }
 }
@@ -37,6 +44,7 @@ void _onTabTapped(int index) {
     final titleController = TextEditingController();
     final descriptionController = TextEditingController();
     final priceController = TextEditingController();
+    
 
     await showDialog(
       context: context,
@@ -386,8 +394,8 @@ void _onTabTapped(int index) {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Otros',
+            icon: Icon(Icons.home),
+            label: 'Inicio',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),

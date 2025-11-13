@@ -5,16 +5,16 @@ import 'package:flutter_application_1/screens/conversaciones_vecinos.dart';
 import 'package:flutter_application_1/screens/products.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class ChatsScreen extends StatefulWidget {
-  const ChatsScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<ChatsScreen> createState() => _ChatsScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _ChatsScreenState extends State<ChatsScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
-  int _currentIndex = 0; // Home (ChatsScreen)
+  int _currentIndex = 0; // Home (HomeScreen)
   
   // Variables para el formulario de Pedir Servicio
   String? _tipoAyudaSeleccionado;
@@ -55,7 +55,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
 
   void _onTabTapped(int index) {
     if (index == 0) {
-      // Inicio → se queda en ChatsScreen
+      // Inicio → se queda en HomeScreen
       setState(() => _currentIndex = index);
     } else if (index == 1) {
       // Explorar → ProductsScreen
@@ -142,7 +142,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (_) => const ChatsScreen()),
+                  MaterialPageRoute(builder: (_) => const HomeScreen()),
                 );
               },
               child: AbsorbPointer(
@@ -497,3 +497,4 @@ class PlaceholderScreen extends StatelessWidget {
     );
   }
 }
+

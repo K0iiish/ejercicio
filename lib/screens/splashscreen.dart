@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_application_1/main.dart';     // HomScreen
+import 'package:flutter_application_1/screens/home.dart'; // HomeScreen
 import 'package:flutter_application_1/screens/login.dart'; // LoginScreen
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
         final user = FirebaseAuth.instance.currentUser;
 
         if (user != null) {
-          // Usuario autenticado → a Home
+          // Usuario autenticado → a HomeScreen
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (_) => const HomeScreen()),

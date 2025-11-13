@@ -5,6 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:flutter_application_1/screens/splashscreen.dart';
 import 'package:flutter_application_1/screens/products.dart';
+import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/conversaciones_vecinos.dart';
 import 'package:flutter_application_1/screens/login.dart';
 import 'package:flutter_application_1/theme/theme.dart';
 
@@ -45,34 +47,6 @@ class MainApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  void _signOut(BuildContext context) async {
-    await GoogleSignIn.instance.signOut();
-    await FirebaseAuth.instance.signOut();
-
-    Navigator.pushReplacement(
-      // ignore: use_build_context_synchronously
-      context,
-      MaterialPageRoute(builder: (_) => const LoginScreen()),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Inicio'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout, color: Colors.white),
-
-            onPressed: () => _signOut(context),
-          ),
-        ],
-      ),
-      body: const ProductsScreen(),
-    );
-  }
-}
+// Esta clase HomeScreen ha sido movida a screens/home.dart
+// Se mantiene aquí por compatibilidad si se usa en algún lugar
+// Si no se usa, se puede eliminar
