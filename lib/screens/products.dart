@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/enviar_solicitud.dart';
 import 'package:flutter_application_1/screens/conversaciones_vecinos.dart';
+import 'package:flutter_application_1/screens/perfil.dart';
 import 'package:flutter_application_1/screens/detail_product.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -18,24 +20,29 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
 void _onTabTapped(int index) {
   if (index == 0) {
-    // Home → HomeScreen
+    // Inicio → EnviarSolicitudScreen
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const EnviarSolicitudScreen()),
+    );
+  } else if (index == 1) {
+    // Explorar → HomeScreen
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => const HomeScreen()),
     );
-  } else if (index == 1) {
+  } else if (index == 2) {
+    // Chats → ConversacionesVecinosScreen
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => const ConversacionesVecinosScreen()),
     );
-    } else if (index == 3) {
+  } else if (index == 3) {
+    // Mi Perfil → PerfilScreen
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const ProductsScreen()),
+      MaterialPageRoute(builder: (_) => const PerfilScreen()),
     );
-  } else if (index == 2) {
-    // "Buscar" tab: queda en Productos (esta misma pantalla)
-    setState(() => _currentIndex = index);
   }
 }
 

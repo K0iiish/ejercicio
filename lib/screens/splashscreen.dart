@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_application_1/screens/home.dart'; // HomeScreen
+import 'package:flutter_application_1/screens/enviar_solicitud.dart'; // EnviarSolicitudScreen (Inicio)
 import 'package:flutter_application_1/screens/login.dart'; // LoginScreen
 
 class SplashScreen extends StatefulWidget {
@@ -24,10 +24,10 @@ class _SplashScreenState extends State<SplashScreen> {
         final user = FirebaseAuth.instance.currentUser;
 
         if (user != null) {
-          // Usuario autenticado → a HomeScreen
+          // Usuario autenticado → a EnviarSolicitudScreen (Inicio)
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (_) => const HomeScreen()),
+            MaterialPageRoute(builder: (_) => const EnviarSolicitudScreen()),
           );
         } else {
           // No autenticado → a Login

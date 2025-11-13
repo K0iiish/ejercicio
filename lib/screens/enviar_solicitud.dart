@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screens/login.dart';
+import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/conversaciones_vecinos.dart';
 import 'package:flutter_application_1/screens/products.dart';
+import 'package:flutter_application_1/screens/perfil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class ChatsScreen extends StatefulWidget {
-  const ChatsScreen({super.key});
+class EnviarSolicitudScreen extends StatefulWidget {
+  const EnviarSolicitudScreen({super.key});
 
   @override
-  State<ChatsScreen> createState() => _ChatsScreenState();
+  State<EnviarSolicitudScreen> createState() => _EnviarSolicitudScreenState();
 }
 
-class _ChatsScreenState extends State<ChatsScreen> {
+class _EnviarSolicitudScreenState extends State<EnviarSolicitudScreen> {
   final TextEditingController _searchController = TextEditingController();
-  int _currentIndex = 0; // Home (ChatsScreen)
+  int _currentIndex = 0; // Inicio (EnviarSolicitudScreen)
   
   // Variables para el formulario de Pedir Servicio
   String? _tipoAyudaSeleccionado;
@@ -55,13 +57,13 @@ class _ChatsScreenState extends State<ChatsScreen> {
 
   void _onTabTapped(int index) {
     if (index == 0) {
-      // Inicio → se queda en ChatsScreen
+      // Inicio → se queda en EnviarSolicitudScreen
       setState(() => _currentIndex = index);
     } else if (index == 1) {
-      // Explorar → ProductsScreen
+      // Explorar → HomeScreen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const ProductsScreen()),
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
       );
     } else if (index == 2) {
       // Chats → ConversacionesVecinosScreen
@@ -70,8 +72,11 @@ class _ChatsScreenState extends State<ChatsScreen> {
         MaterialPageRoute(builder: (_) => const ConversacionesVecinosScreen()),
       );
     } else if (index == 3) {
-      // Mi Perfil → por ahora se queda
-      setState(() => _currentIndex = index);
+      // Mi Perfil → PerfilScreen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const PerfilScreen()),
+      );
     }
   }
 
@@ -142,7 +147,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (_) => const ChatsScreen()),
+                  MaterialPageRoute(builder: (_) => const EnviarSolicitudScreen()),
                 );
               },
               child: AbsorbPointer(
@@ -497,3 +502,4 @@ class PlaceholderScreen extends StatelessWidget {
     );
   }
 }
+

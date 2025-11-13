@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/enviar_solicitud.dart';
 import 'package:flutter_application_1/screens/products.dart';
+import 'package:flutter_application_1/screens/perfil.dart';
 
 class ConversacionesVecinosScreen extends StatefulWidget {
   const ConversacionesVecinosScreen({super.key});
@@ -98,23 +100,26 @@ class _ConversacionesVecinosScreenState
 
   void _onBottomNavTapped(int index) {
     if (index == 0) {
-      // Inicio → HomeScreen
+      // Inicio → EnviarSolicitudScreen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const EnviarSolicitudScreen()),
+      );
+    } else if (index == 1) {
+      // Explorar → HomeScreen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const HomeScreen()),
-      );
-    } else if (index == 1) {
-      // Explorar → ProductsScreen
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const ProductsScreen()),
       );
     } else if (index == 2) {
       // Chats → se queda en ConversacionesVecinosScreen
       setState(() => _currentBottomNavIndex = index);
     } else if (index == 3) {
-      // Mi Perfil → por ahora se queda
-      setState(() => _currentBottomNavIndex = index);
+      // Mi Perfil → PerfilScreen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const PerfilScreen()),
+      );
     }
   }
 

@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_application_1/screens/splashscreen.dart';
 import 'package:flutter_application_1/screens/products.dart';
 import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/enviar_solicitud.dart';
 import 'package:flutter_application_1/screens/conversaciones_vecinos.dart';
 import 'package:flutter_application_1/screens/login.dart';
 import 'package:flutter_application_1/theme/theme.dart';
@@ -47,6 +48,6 @@ class MainApp extends StatelessWidget {
   }
 }
 
-// Esta clase HomeScreen ha sido movida a screens/home.dart
-// Se mantiene aquí por compatibilidad si se usa en algún lugar
+// La clase HomeScreen ha sido movida a screens/home.dart
+// Esta clase se mantiene aquí por compatibilidad si se usa en algún lugar
 // Si no se usa, se puede eliminar
